@@ -17,15 +17,28 @@ from jinja2 import Template
 # ### - строковый комментарий
 
 # EXAMPLE 2 ##################################################################
+# USING THE CLASS ##################################################################
 
-class Person:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+# class Person:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+# per = Person("Sven", 56)
+#
+# tm = Template("I am {{ p.age }} and my name is {{ p.name }}.")
+# msg = tm.render(p=per)
+#
+# print(msg)
 
-per = Person("Sven", 56)
+# EXAMPLE 3 ##################################################################
+# USING THE DICTIONARY ##################################################################
+
+
+per = {"name": "Harry Potter", "age": 11}
 
 tm = Template("I am {{ p.age }} and my name is {{ p.name }}.")
+#tm = Template("I am {{ p['age'] }} and my name is {{ p['name'] }}.")  # Alternative version
 msg = tm.render(p=per)
 
 print(msg)
