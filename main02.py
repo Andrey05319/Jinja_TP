@@ -40,6 +40,7 @@ from jinja2 import Template
 # msg = escape(link)  # Модуль escape упрощает синтаксис - но конкретно в моем случае его почему-то не получается импортировать
 # print(msg)
 
+
 # EXAMPLE 4 ##########################################################################################################
 # ИТЕРИРОВАНИЕ ЧЕРЕЗ БЛОК for ###############################################№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№###################
 
@@ -48,17 +49,49 @@ from jinja2 import Template
 #     <повторяемый фрагмент>
 # {% endfor %}
 
+# cities = [
+#     {'id': 1, 'city': 'Jots'},
+#     {'id': 5, 'city': 'Kaluga'},
+#     {'id': 7, 'city': 'Orel'},
+#     {'id': 81, 'city': 'Astana'},
+#     {'id': 19, 'city': 'Bern'},
+# ]
+# # Символ - убирает перенос
+# link = '''<select name = "cities">
+# {% for c in cities -%}
+#     <option value="{{c['id']}}">{{c['city']}}</option>
+# {% endfor -%}
+# </select>'''
+#
+# tm = Template(link)
+# msg = tm.render(cities=cities)
+#
+# print(msg)
+
+
+# EXAMPLE 5 ##########################################################################################################
+# ВЫРАЖЕНИЕ if ###############################################№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№###################
+
+# Шаблон:
+# {% if<условие>%}
+#     <фрагмент истинности условия>
+# {% endif %}
+
 cities = [
     {'id': 1, 'city': 'Jots'},
-    {'id': 5, 'city': 'Kaluga'},
-    {'id': 7, 'city': 'Orel'},
+    {'id': 4, 'city': 'Kaluga'},
+    {'id': 56, 'city': 'Orel'},
     {'id': 81, 'city': 'Astana'},
-    {'id': 19, 'city': 'Bern'},
+    {'id': 3, 'city': 'Bern'},
 ]
 # Символ - убирает перенос
 link = '''<select name = "cities">
 {% for c in cities -%} 
+{% if c.id > 6 -%} 
     <option value="{{c['id']}}">{{c['city']}}</option>
+{%else -%}    
+    {{c['city']}}
+{% endif -%}
 {% endfor -%}
 </select>'''
 
