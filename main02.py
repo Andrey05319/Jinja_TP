@@ -89,6 +89,8 @@ link = '''<select name = "cities">
 {% for c in cities -%} 
 {% if c.id > 6 -%} 
     <option value="{{c['id']}}">{{c['city']}}</option>
+{% elif c.city == "Jots" -%}     
+    <option {{c['id']}}</option>    
 {%else -%}    
     {{c['city']}}
 {% endif -%}
