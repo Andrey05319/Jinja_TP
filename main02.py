@@ -1,13 +1,15 @@
 from jinja2 import Template
 
-# EXAMPLE 3 ##################################################################
+# EXAMPLE 1 ##################################################################
 # ЭКРАНИРОВАНИЕ ДАННЫХ В СТРОКАХ ##################################################################
 
+# Все что помещается внутри блока RAW не преобразуется
 
-per = {"name": "Harry Potter", "age": 11}
+data = '''{% raw %}Модуль Jinja вместо определения {{name}} подставляет соответствующее значение{% endraw %}'''
 
-tm = Template("I am {{ p.age }} and my name is {{ p.name }}.")
-#tm = Template("I am {{ p['age'] }} and my name is {{ p['name'] }}.")  # Alternative version
-msg = tm.render(p=per)
+tm = Template(data)
+msg = tm.render(name='Potter')
+
+# Вследствие экранирования имя Поттер не было подставлено
 
 print(msg)
