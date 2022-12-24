@@ -71,5 +71,19 @@ from jinja2 import Template
 # {% endfilter %}
 
 
+persons = [
+    {"name": "Harry", "old": 11, "weight": 25},
+    {"name": "Hermiona", "old": 12, "weight": 23},
+    {"name": "Ron", "old": 10, "weight": 27},
+]
 
+tpl = '''
+{%- for u in users-%}
+{% filter upper %}{{u.name}}{% endfilter %}
+{% endfor -%}
+'''
 
+tm = Template(tpl)
+msg = tm.render(users = persons)
+
+print(msg)
