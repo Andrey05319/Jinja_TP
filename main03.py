@@ -40,7 +40,30 @@ from jinja2 import Template
 # print(msg)
 
 # EXAMPLE 3 ##################################################################
-# MAX, MIN ##################################################################
+# MAX, MIN, RANDOM, REPLACE ##################################################################
+
+# cars = [
+#     {'model': "Huyndai", 'price': 10001},
+#     {'model': "Audi", 'price': 20002},
+#     {'model': "Opel", 'price': 30003},
+#     {'model': "Kia", 'price': 40004},
+# ]
+#
+# # tpl = "Максимальная цена автомобиля {{ cs | max(attribute='price')}}" # выдаст элемент словаря
+# # tpl = "Максимальная цена автомобиля {{ (cs | max(attribute='price')).price }}" # выдаст только стоимость
+# # tpl = "Минимальная цена автомобиля {{ (cs | min(attribute='price')).price }}" # выдаст только стоимость
+# # tpl = "Случайный автомобиль {{ cs | random }}"
+# tpl = "Минимальная цена автомобиля {{ cs | replace('i', 'G') }}"
+#
+#
+#
+# tm = Template(tpl)
+# msg = tm.render(cs=cars)
+#
+# print(msg)
+
+# EXAMPLE 4 ##################################################################
+# FILTER ##################################################################
 
 # Шаблон:
 # sum - вычисление суммы поля в коллекции
@@ -48,22 +71,23 @@ from jinja2 import Template
 
 cars = [
     {'model': "Huyndai", 'price': 10001},
-    {'model': "Aydi", 'price': 20002},
+    {'model': "Audi", 'price': 20002},
     {'model': "Opel", 'price': 30003},
     {'model': "Kia", 'price': 40004},
 ]
 
 # tpl = "Максимальная цена автомобиля {{ cs | max(attribute='price')}}" # выдаст элемент словаря
 # tpl = "Максимальная цена автомобиля {{ (cs | max(attribute='price')).price }}" # выдаст только стоимость
-tpl = "Минимальная цена автомобиля {{ (cs | min(attribute='price')).price }}" # выдаст только стоимость
+# tpl = "Минимальная цена автомобиля {{ (cs | min(attribute='price')).price }}" # выдаст только стоимость
+# tpl = "Случайный автомобиль {{ cs | random }}"
+tpl = "Минимальная цена автомобиля {{ cs | replace('i', 'G') }}"
+
 
 
 tm = Template(tpl)
 msg = tm.render(cs=cars)
 
 print(msg)
-
-
 
 
 
