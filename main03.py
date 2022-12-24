@@ -91,18 +91,59 @@ from jinja2 import Template
 # EXAMPLE 5 ##################################################################
 # Макроопределения ##################################################################
 
+# html = '''
+# {% macro input(name, value = '', type='text', size=20) -%}
+#     <input type="{{ type }}" name="{{ name }}" value="{{ value|e }}" size="{{ size }}">
+# {%- endmacro %}
+#
+# <p>{{ input('username') }}
+# <p>{{ input('email') }}
+# <p>{{ input('password') }}
+# '''
+#
+# tm = Template(html)
+# msg = tm.render()
+#
+# print(msg)
+
+
+# EXAMPLE 6 ##################################################################
+# Вложенные макросы ##################################################################
+
+# # Шаблон:
+# # {{% call[(параметры)]<вызов макроса>%}}
+# # <вложенный шаблон>
+# # {% endcall %}
+
+
+persons = [
+    {"name": "Harry", "old": 11, "weight": 25},
+    {"name": "Hermiona", "old": 12, "weight": 23},
+    {"name": "Ron", "old": 10, "weight": 27},
+]
+
+
 html = '''
-{% macro input(name, value = '', type='text', size=20) -%}
-    <input type="{{ type }}" name="{{ name }}" value="{{ value|e }}" size="{{ size }}">
+{% macro list_users(list_of_user) -%}
+<ul>
+{% for u in list_of_user -%}
+    <li>{{u.name}} {{caller(u)}}
+{%- endfor %}    
+</ul>    
 {%- endmacro %}
 
-<p>{{ input('username') }}
-<p>{{ input('email') }}
-<p>{{ input('password') }}
+{% call(user) list_users(users) %}
+    <ul>
+    <li>age: {{user.old}}
+    <li>weight: {{user.weight}}
+    </ul>
+{% endcall -%}
 '''
 
 tm = Template(html)
-msg = tm.render()
+msg = tm.render(users = persons)
 
 print(msg)
+
+
 
