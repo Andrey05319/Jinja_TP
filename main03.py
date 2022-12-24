@@ -3,36 +3,18 @@
 from jinja2 import Template
 
 # EXAMPLE 1 ##################################################################
-# ЭКРАНИРОВАНИЕ ДАННЫХ В СТРОКАХ ##################################################################
+# SUM ##################################################################
 
-
-
-# Шаблон:
-# {% if<условие>%}
-#     <фрагмент истинности условия>
-# {% endif %}
-
-cities = [
-    {'id': 1, 'city': 'Jots'},
-    {'id': 4, 'city': 'Kaluga'},
-    {'id': 56, 'city': 'Orel'},
-    {'id': 81, 'city': 'Astana'},
-    {'id': 3, 'city': 'Bern'},
+cars = [
+    {'model': "Huyndai", 'price': 10001},
+    {'model': "Aydi", 'price': 20002},
+    {'model': "Opel", 'price': 30003},
+    {'model': "Kia", 'price': 40004},
 ]
-# Символ - убирает перенос
-link = '''<select name = "cities">
-{% for c in cities -%} 
-{% if c.id > 6 -%} 
-    <option value="{{c['id']}}">{{c['city']}}</option>
-{% elif c.city == "Jots" -%}     
-    <option {{c['id']}}</option>    
-{%else -%}    
-    {{c['city']}}
-{% endif -%}
-{% endfor -%}
-</select>'''
 
-tm = Template(link)
-msg = tm.render(cities=cities)
+tpl = "Суммарная цена автомобилей {{ cs | sum(attribute='price')}}"
+
+tm = Template(tpl)
+msg = tm.render(cs=cars)
 
 print(msg)
